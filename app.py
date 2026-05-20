@@ -16,7 +16,9 @@ from evaluation import run_evaluation
 from adaptive_baseline import update_profile_from_events
 
 app = Flask(__name__)
-
+@app.route("/")
+def home():
+    return "Guardian-X is running!"
 # --- TLS 1.3 Configuration (Report: FR-13) ---
 CERT_PATH = os.path.join(os.path.dirname(__file__), 'certs', 'cert.pem')
 KEY_PATH = os.path.join(os.path.dirname(__file__), 'certs', 'key.pem')
