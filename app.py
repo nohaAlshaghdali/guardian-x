@@ -596,9 +596,11 @@ def simulate_login():
 if __name__ == '__main__':
     db.init_db()
     ssl_context = get_ssl_context()
-    if ssl_context:
+if ssl_context:
         print('HTTPS: https://127.0.0.1:5000 (TLS minimum 1.2; TLS 1.3 if supported by Python/OpenSSL)')
-        app.run(host='127.0.0.1', port=5000, debug=True, ssl_context=ssl_context)
-    else:
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host="0.0.0.0", port=port, debug=False, ssl_context=ssl_context)
+else:
         print('HTTP: http://127.0.0.1:5000 — ضع cert.pem و key.pem في server/certs لتفعيل HTTPS/TLS')
-        app.run(host='127.0.0.1', port=5000, debug=True)
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host="0.0.0.0", port=port, debug=False)
