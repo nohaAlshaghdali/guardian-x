@@ -3,7 +3,7 @@ import os
 import json
 import ssl
 from datetime import datetime, timedelta
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template
 
 import db
 from ai_model import analyze_event
@@ -18,7 +18,7 @@ from adaptive_baseline import update_profile_from_events
 app = Flask(__name__)
 @app.route("/")
 def home():
-    return "Guardian-X is running!"
+   return render_template("dashboard.html")
 # --- TLS 1.3 Configuration (Report: FR-13) ---
 CERT_PATH = os.path.join(os.path.dirname(__file__), 'certs', 'cert.pem')
 KEY_PATH = os.path.join(os.path.dirname(__file__), 'certs', 'key.pem')
