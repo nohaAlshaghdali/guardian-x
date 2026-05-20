@@ -16,6 +16,9 @@ from evaluation import run_evaluation
 from adaptive_baseline import update_profile_from_events
 
 app = Flask(__name__)
+@app.route('/<path:filename>')
+def static_files(filename):
+    return send_from_directory('.', filename)
 @app.route("/")
 def home():
    return send_from_directory('.', 'index.html')
